@@ -19,8 +19,7 @@ namespace PromotionEnginePOC.Controllers
       
         // GET: PromotionEngine
         public ActionResult Index()
-        {
-          // double price= _promotionType.CalculateTotalPrice(new List<SKU>());
+        {          
             return View();
         }
 

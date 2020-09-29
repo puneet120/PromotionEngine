@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\PromotionEngineTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -99,6 +100,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PromotionEnginePOC.Business\PromotionEnginePOC.Business.csproj">
+      <Project>{FBFC9CF8-FEBF-4F2F-BF23-09CDB6683977}</Project>
+      <Name>PromotionEnginePOC.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PromotionEnginePOC.Entity\PromotionEnginePOC.Entity.csproj">
+      <Project>{3D4F0060-8E40-4569-9B15-FF1B872956BD}</Project>
+      <Name>PromotionEnginePOC.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PromotionEnginePOC\PromotionEnginePOC.csproj">
       <Project>{899043D9-B878-4142-B6AD-87991F0218C1}</Project>
       <Name>PromotionEnginePOC</Name>

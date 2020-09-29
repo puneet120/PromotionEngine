@@ -13,22 +13,29 @@ namespace PromotionEnginePOC.Rules
         public static double PromotionType1Rule(IList<SKU> sKU)
         {
             double totalprice = 0;
-            foreach (var item in sKU)
+            try
             {
-                double price = 0;
-                switch (item.Quantity)
+                foreach (var item in sKU)
                 {
-                    case int n when item.Quantity >= 3:
-                        price = ((n - 3) * item.Price) + 130; // Will be populated from db 
-                        break;
-                    case int n when item.Quantity >= 2:
-                        price = ((n - 2) * item.Price) + 45; // Hard Coded values will be populated from db
-                        break;
-                    default:
-                        price = item.Price * item.Quantity;
-                        break;
+                    double price = 0;
+                    switch (item.Quantity)
+                    {
+                        case int n when item.Quantity >= 3:
+                            price = ((n - 3) * item.Price) + 130; // Will be populated from db 
+                            break;
+                        case int n when item.Quantity >= 2:
+                            price = ((n - 2) * item.Price) + 45; // Hard Coded values will be populated from db
+                            break;
+                        default:
+                            price = item.Price * item.Quantity;
+                            break;
+                    }
+                    totalprice = totalprice + price;
                 }
-                totalprice = totalprice + price;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
             }
             return totalprice;
             
@@ -37,11 +44,19 @@ namespace PromotionEnginePOC.Rules
         public static double PromotionType2Rule(IList<SKU> sKU)
         {
             double totalprice = 0;
-            foreach (var item in sKU)
+            try
             {
-                double price = (item.Price / sKU.Count) * item.Quantity;
-                totalprice = totalprice + price;
+                foreach (var item in sKU)
+                {
+                    double price = (item.Price / sKU.Count) * item.Quantity;
+                    totalprice = totalprice + price;
+                }
             }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
 
             return totalprice;
 
