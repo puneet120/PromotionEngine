@@ -19,10 +19,13 @@ namespace PromotionEnginePOC.Rules
                 switch (item.Quantity)
                 {
                     case int n when item.Quantity >= 3:
-                        price = ((n - 3) * item.Price) + 130;
+                        price = ((n - 3) * item.Price) + 130; // Will be populated from db 
                         break;
                     case int n when item.Quantity >= 2:
-                        price = ((n - 2) * item.Price) + 45;
+                        price = ((n - 2) * item.Price) + 45; // Hard Coded values will be populated from db
+                        break;
+                    default:
+                        price = item.Price * item.Quantity;
                         break;
                 }
                 totalprice = totalprice + price;

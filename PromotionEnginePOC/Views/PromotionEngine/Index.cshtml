@@ -1,0 +1,97 @@
+﻿@model PromotionEnginePOC.Models.SkuModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <form id="frm" method="post">
+        <div>
+            <label for="Id">Sku Id:</label><br>
+            @Html.TextBoxFor(m => m.Id) <br />
+            <label for="Quantity">Quantity: </label><br>
+            @Html.TextBoxFor(m => m.Quantity) <br />
+            <label for="Price">Price:</label><br>
+            @Html.TextBoxFor(m => m.Price) <br /><br />
+            <input type="button" id="btn" value="Add" />
+
+        </div>
+        <br />
+        <br />
+        <table id="tbl">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>
+                        Quantity
+                    </td>
+                    <td>
+                        Price
+                    </td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <br /><br />
+        <input type="hidden" name="content" id="content" />
+        <input type="submit" value="Calculate Total Price" id="btnSubmit" />
+    </form><br/><br/>
+     @if (ViewBag.Price != null)
+     {
+
+    <div id="showhide">
+        <label id="lblprice">Total Price is :</label> <span style="color:red;" id="totalprice">@ViewBag.Price</span>  
+    </div>
+     }
+</body>
+</html>
+<script type="text/javascript">
+    $('#btn').click(function () {
+        appendTable();
+    });
+    var jsonObj = [];
+    function appendTable()
+    {
+        var id = $('#Id').val();
+        var quan = $('#Quantity').val();
+        var price = $('#Price').val();
+
+        item = {}
+        item["Id"] = id;
+        item["Quantity"] = quan;
+        item["Price"] = price;
+
+        jsonObj.push(item);
+        $('#tbl tbody').append("<tr><td>" + $('#Id').val() + "</td><td>" + $('#Quantity').val() + "</td><td>" + $('#Price').val()+"</td></tr>" )
+        $("input[type = 'text']").val('');
+    }
+
+    $('#btnSubmit').click(function () {
+        $('#content').val(JSON.stringify(jsonObj));
+    })
+</script>
